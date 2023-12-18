@@ -12,3 +12,233 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
+assets/dinotype.fon
+assets/dinotype.png
+assets/dinowyde_wip_characters.png
+assets/OneBitCanariPack/README.txt
+assets/OneBitCanariPack/game_engines/1BITCanariPack_ExportGMS2/PixelPackTopDown1BIT.yyz
+assets/OneBitCanariPack/music/adventure.wav
+assets/OneBitCanariPack/music/dark_cave.wav
+assets/OneBitCanariPack/music/eerie.wav
+assets/OneBitCanariPack/sfx/attack_01.wav
+assets/OneBitCanariPack/sfx/attack_02.wav
+assets/OneBitCanariPack/sfx/attack_03.wav
+assets/OneBitCanariPack/sfx/death_01.wav
+assets/OneBitCanariPack/sfx/death_02.wav
+assets/OneBitCanariPack/sfx/fall_01.wav
+assets/OneBitCanariPack/sfx/hurt_01.wav
+assets/OneBitCanariPack/sfx/hurt_02.wav
+assets/OneBitCanariPack/sfx/jump_01.wav
+assets/OneBitCanariPack/sfx/jump_02.wav
+assets/OneBitCanariPack/sfx/jump_03.wav
+assets/OneBitCanariPack/sfx/land_01.wav
+assets/OneBitCanariPack/sfx/menuback_01.wav
+assets/OneBitCanariPack/sfx/menucursor_01.wav
+assets/OneBitCanariPack/sfx/menuvalid_01.wav
+assets/OneBitCanariPack/sfx/pickup_01.wav
+assets/OneBitCanariPack/sprites/enemies/blob/blob_death.gif
+assets/OneBitCanariPack/sprites/enemies/blob/blob_hurt.gif
+assets/OneBitCanariPack/sprites/enemies/blob/blob_idle.gif
+assets/OneBitCanariPack/sprites/enemies/blob/blob_walk.gif
+assets/OneBitCanariPack/sprites/enemies/negablob/negablob_death.gif
+assets/OneBitCanariPack/sprites/enemies/negablob/negablob_hurt.gif
+assets/OneBitCanariPack/sprites/enemies/negablob/negablob_idle.gif
+assets/OneBitCanariPack/sprites/enemies/negablob/negablob_walk.gif
+assets/OneBitCanariPack/sprites/enemies/snake/snake_death.gif
+assets/OneBitCanariPack/sprites/enemies/snake/snake_idle_d.gif
+assets/OneBitCanariPack/sprites/enemies/snake/snake_idle_r.gif
+assets/OneBitCanariPack/sprites/enemies/snake/snake_idle_u.gif
+assets/OneBitCanariPack/sprites/enemies/snake/snake_walk_d.gif
+assets/OneBitCanariPack/sprites/enemies/snake/snake_walk_r.gif
+assets/OneBitCanariPack/sprites/enemies/snake/snake_walk_u.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_attack_d.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_attack_r.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_attack_u.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_death_d.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_hurt_d.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_hurt_r.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_hurt_u.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_idle_d.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_idle_r.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_idle_u.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_walk_d.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_walk_r.gif
+assets/OneBitCanariPack/sprites/enemies/sorcerer/sorcerer_walk_u.gif
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Blob Death.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Blob Hurt.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Blob Idle.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Blob Walk.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_NegaBlob Death.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_NegaBlob Hurt.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_NegaBlob Idle.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_NegaBlob Walk.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Snake Death.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Snake Idle D.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Snake Idle R.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Snake Idle U.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Snake Walk D.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Snake Walk R.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Snake Walk U.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Attack D.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Attack R.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Attack U.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Death D.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Hurt D.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Hurt R.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Hurt U.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Idle D.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Idle R.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Idle U.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Walk D.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Walk R.png
+assets/OneBitCanariPack/sprites/enemies/spritesheets/ENEMIES1bit_Sorcerer Walk U.png
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Attack D.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Attack R.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Attack U.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Death.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Hurt D.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Hurt R.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Hurt U.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Idle D.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Idle R.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Idle U.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer JumpRoll D.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer JumpRoll R.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer JumpRoll U.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Push D.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Push R.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Push U.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Walk D.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Walk R.gif
+assets/OneBitCanariPack/sprites/heroes/adventurer/HEROS_PixelPackTOPDOWN1BIT_Adventurer Walk U.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_attack_d.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_attack_r.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_attack_u.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_death.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_hurt_d.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_hurt_r.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_hurt_u.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_idle_d.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_idle_r.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_idle_u.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_jumproll_d.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_jumproll_r.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_jumproll_u.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_push_d.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_push_r.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_push_u.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_walk_d.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_walk_r.gif
+assets/OneBitCanariPack/sprites/heroes/doggo/dog_walk_u.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_attack_d.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_attack_r.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_attack_u.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_death_d.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_hurt_d.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_hurt_r.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_hurt_u.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_idle_d.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_idle_r.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_idle_u.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_jumproll_d.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_jumproll_r.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_jumproll_u.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_push_d.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_push_r.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_push_u.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_walk_d.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_walk_r.gif
+assets/OneBitCanariPack/sprites/heroes/princess/princess_walk_u.gif
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_attack_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_attack_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_attack_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_death.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_hurt_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_hurt_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_hurt_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_idle_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_idle_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_idle_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_jumproll_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_jumproll_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_jumproll_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_push_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_push_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_push_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_walk_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_walk_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/adventurer_walk_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_attack_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_attack_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_attack_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_death.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_hurt_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_hurt_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_hurt_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_idle_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_idle_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_idle_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_jumproll_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_jumproll_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_jumproll_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_push_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_push_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_push_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_walk_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_walk_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/dog_walk_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_attack_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_attack_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_attack_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_death_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_hurt_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_hurt_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_hurt_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_idle_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_idle_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_idle_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_jumproll_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_jumproll_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_jumproll_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_push_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_push_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_push_u.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_walk_d.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_walk_r.png
+assets/OneBitCanariPack/sprites/heroes/spritesheets/princess_walk_u.png
+assets/OneBitCanariPack/sprites/items/item1BIT_bananas.png
+assets/OneBitCanariPack/sprites/items/item1BIT_bell.png
+assets/OneBitCanariPack/sprites/items/item1BIT_bomb.png
+assets/OneBitCanariPack/sprites/items/item1BIT_bones.png
+assets/OneBitCanariPack/sprites/items/item1BIT_book.png
+assets/OneBitCanariPack/sprites/items/item1BIT_boots.png
+assets/OneBitCanariPack/sprites/items/item1BIT_bow.png
+assets/OneBitCanariPack/sprites/items/item1BIT_chest.png
+assets/OneBitCanariPack/sprites/items/item1BIT_coin.png
+assets/OneBitCanariPack/sprites/items/item1BIT_compass.png
+assets/OneBitCanariPack/sprites/items/item1BIT_crown.png
+assets/OneBitCanariPack/sprites/items/item1BIT_feather.png
+assets/OneBitCanariPack/sprites/items/item1BIT_floppydisk.png
+assets/OneBitCanariPack/sprites/items/item1BIT_gem.png
+assets/OneBitCanariPack/sprites/items/item1BIT_glove.png
+assets/OneBitCanariPack/sprites/items/item1BIT_hammer.png
+assets/OneBitCanariPack/sprites/items/item1BIT_harp.png
+assets/OneBitCanariPack/sprites/items/item1BIT_heart.png
+assets/OneBitCanariPack/sprites/items/item1BIT_key.png
+assets/OneBitCanariPack/sprites/items/item1BIT_lamp.png
+assets/OneBitCanariPack/sprites/items/item1BIT_leaf.png
+assets/OneBitCanariPack/sprites/items/item1BIT_mirror.png
+assets/OneBitCanariPack/sprites/items/item1BIT_moneybag.png
+assets/OneBitCanariPack/sprites/items/item1BIT_mushroom.png
+assets/OneBitCanariPack/sprites/items/item1BIT_pickaxe.png
+assets/OneBitCanariPack/sprites/items/item1BIT_pot.png
+assets/OneBitCanariPack/sprites/items/item1BIT_potion.png
+assets/OneBitCanariPack/sprites/items/item1BIT_ring.png
+assets/OneBitCanariPack/sprites/items/item1BIT_scroll.png
+assets/OneBitCanariPack/sprites/items/item1BIT_seashell.png
+assets/OneBitCanariPack/sprites/items/item1BIT_shield.png
+assets/OneBitCanariPack/sprites/items/item1BIT_shovel.png
+assets/OneBitCanariPack/sprites/items/item1BIT_skull.png
+assets/OneBitCanariPack/sprites/items/item1BIT_skullkey.png
+assets/OneBitCanariPack/sprites/items/item1BIT_sword.png
+assets/OneBitCanariPack/tileset/PixelPackTopDown1Bit.png
