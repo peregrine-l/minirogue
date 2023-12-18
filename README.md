@@ -1,2 +1,3 @@
 # minirogue
-Learning Rust and Bevy making a tiny roguelike game.
+A tiny roguelike game to learn Rust, Bevy and ECS.
+Does not work yet.
