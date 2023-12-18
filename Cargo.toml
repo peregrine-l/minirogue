@@ -3,6 +3,61 @@ name = "minirogue"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+default = ["render"]
+atlas = []
+render = []
 
 [dependencies]
+bevy = { version = "0.11", default-features = false, features = [
+    "bevy_asset",
+    "bevy_core_pipeline",
+    "bevy_render",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_winit",
+    "ktx2",
+    "png",
+    "x11",
+] }
+anyhow = { version = "1.0" }
+bevy_ecs_tilemap = "0.11.1"
+env_logger = "0.10"
+ldtk_rust = { version = "0.6" }
+log = "0.4"
+rand = "0.8"
+regex = "1.5.4"
+serde_json = { version = "1.0" }
+tiled = { version = "0.11.0", default-features = false }
+
+[dev-dependencies.bevy]
+version = "0.11"
+default-features = false
+features = [
+    "bevy_asset",
+    "bevy_core_pipeline",
+    "bevy_render",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_winit",
+    "filesystem_watcher",
+    "png",
+    "ktx2",
+    "webgl2"
+]
+
+[target.'cfg(unix)'.dev-dependencies.bevy]
+version = "0.11"
+default-features = false
+features = [
+    "bevy_asset",
+    "bevy_core_pipeline",
+    "bevy_render",
+    "bevy_sprite",
+    "bevy_text",
+    "bevy_winit",
+    "ktx2",
+    "png",
+    "wayland",
+    "x11",
+]
