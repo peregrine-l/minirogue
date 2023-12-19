@@ -1,0 +1,38 @@
+pub const TILE_NAMES: [&'static str; 32] = [
+// line 1
+    "transparent",
+    "black",
+    "ladder left",
+    "ladder center",
+    "ladder right",
+    "ladder small",
+    "treetop forest left",
+    "treetop forest right",
+    "cloud top left",
+    "cloud top right",
+    "cloud small top",
+    "ground hole top left",
+    "ground hole top right",
+    "soil surrounded top left",
+    "soil surrounded top",
+    "soil surrounded top right",
+// line 2
+    "herbs two",
+    "herbs se",
+    "herbs sw1",
+    "herbs nw",
+    "herbs sw2",
+    "flowers",
+    "treetop left",
+    "treetop right",
+    "cloud base left",
+    "cloud base right",
+    "cloud base",
+    "ground hole bottom left",
+    "ground hole bottom right",
+    "soil surrounded middle left",
+    "soil surrounded ladder",
+    "soil surrounded middle right",
+// line 3
+
+];

@@ -1,7 +1,10 @@
 use bevy::prelude::*;
 use bevy_ecs_tilemap::prelude::*;
 
-pub mod setup;
+pub mod components;
+pub mod map;
+pub mod startup;
+
 
 fn main() {
     App::new()
@@ -17,7 +20,7 @@ fn main() {
                 .set(ImagePlugin::default_nearest()),
         )
         .add_plugins(TilemapPlugin)
-        .add_systems(Startup, crate::setup::setup::startup)
+        .add_systems(Startup, crate::startup::startup)
         .add_systems(Update, bevy::window::close_on_esc)
         .run();
 }
