@@ -1,38 +1,25 @@
-pub const TILE_NAMES: [&'static str; 32] = [
-// line 1
-    "transparent",
-    "black",
-    "ladder left",
-    "ladder center",
-    "ladder right",
-    "ladder small",
-    "treetop forest left",
-    "treetop forest right",
-    "cloud top left",
-    "cloud top right",
-    "cloud small top",
-    "ground hole top left",
-    "ground hole top right",
-    "soil surrounded top left",
-    "soil surrounded top",
-    "soil surrounded top right",
-// line 2
-    "herbs two",
-    "herbs se",
-    "herbs sw1",
-    "herbs nw",
-    "herbs sw2",
-    "flowers",
-    "treetop left",
-    "treetop right",
-    "cloud base left",
-    "cloud base right",
-    "cloud base",
-    "ground hole bottom left",
-    "ground hole bottom right",
-    "soil surrounded middle left",
-    "soil surrounded ladder",
-    "soil surrounded middle right",
-// line 3
+use bevy_ecs_tilemap::tiles::TileTextureIndex;
+use crate::map::tiles::CANARI_TILES;
+use rand::prelude::*;
 
-];
+pub mod tiles;
+
+pub fn random_ground() -> TileTextureIndex {
+    let mut rng = rand::thread_rng();
+
+    let ground_tiles = [
+        (CANARI_TILES.get("black"),            20),
+        (CANARI_TILES.get("ground: 1 dot a"),  3),
+        (CANARI_TILES.get("ground: 1 dot b"),  3),
+        (CANARI_TILES.get("ground: 2 dots"),   2),
+        (CANARI_TILES.get("ground: 3 dots a"), 1),
+        (CANARI_TILES.get("ground: 3 dots b"), 1),
+    ];
+    
+    let coordinates = 
+        ground_tiles
+            .choose_weighted(&mut rng, |item| { item.1 })
+            .unwrap().0.unwrap();
+    
+    TileTextureIndex((coordinates.0 as u32) + 16 * (coordinates.1 as u32))
+}

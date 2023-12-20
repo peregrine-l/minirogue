@@ -1,21 +1,19 @@
 use bevy::prelude::*;
 use bevy_ecs_tilemap::prelude::*;
+use crate::map::random_ground;
 
-pub fn startup(mut commands: Commands, asset_server: Res<AssetServer>) {
+pub fn startup(
+    mut commands: Commands, 
+    asset_server: Res<AssetServer>,
+) {
     commands.spawn(Camera2dBundle::default());
-
     build_tilemap(commands, asset_server);
 }
 
-fn build_tilemap(mut commands: Commands, asset_server: Res<AssetServer>) {
-    fn checkers_tile_color(x: u32, y: u32) -> TileTextureIndex {
-        if (x + y) % 2 == 0 {
-            TileTextureIndex(2)
-        } else {
-            TileTextureIndex(4)
-        }
-    }
-
+fn build_tilemap(
+    mut commands: Commands, 
+    asset_server: Res<AssetServer>,
+) {
     let texture_handle: Handle<Image> = asset_server.load("OneBitCanariPack/tileset/PixelPackTopDown1Bit.png");
     let map_size = TilemapSize { x: 32, y: 32 };
     let mut tile_storage = TileStorage::empty(map_size);
@@ -29,7 +27,7 @@ fn build_tilemap(mut commands: Commands, asset_server: Res<AssetServer>) {
                 .spawn(TileBundle {
                     position: tile_pos,
                     tilemap_id: TilemapId(tilemap_entity),
-                    texture_index: checkers_tile_color(x, y),
+                    texture_index: random_ground(),
                     ..Default::default()
                 })
                 .id();
@@ -40,18 +38,20 @@ fn build_tilemap(mut commands: Commands, asset_server: Res<AssetServer>) {
     let tile_size = TilemapTileSize { x: 16.0, y: 16.0 };
     let grid_size = tile_size.into();
     let map_type = TilemapType::Square;
-    commands.entity(tilemap_entity).insert(TilemapBundle {
-        grid_size,
-        map_type,
-        size: map_size,
-        storage: tile_storage,
-        texture: TilemapTexture::Single(texture_handle),
-        tile_size,
-        spacing: TilemapSpacing { x: 0.0, y: 0.0 },
-        transform: get_tilemap_center_transform(&map_size, &grid_size, &map_type, 1.0) *
-                   Transform::from_xyz(0.0, 0.0, 1.0),
-        ..Default::default()
-    });
+    commands
+        .entity(tilemap_entity)
+        .insert(TilemapBundle {
+            grid_size,
+            map_type,
+            size: map_size,
+            storage: tile_storage,
+            texture: TilemapTexture::Single(texture_handle),
+            tile_size,
+            spacing: TilemapSpacing { x: 0.0, y: 0.0 },
+            transform: get_tilemap_center_transform(&map_size, &grid_size, &map_type, 1.0) *
+                       Transform::from_xyz(0.0, 0.0, 1.0),
+            ..Default::default()
+        });
 }
 
 /* fn walls() {
