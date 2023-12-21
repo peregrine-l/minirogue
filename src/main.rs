@@ -3,6 +3,7 @@ use bevy_ecs_tilemap::prelude::*;
 
 pub mod components;
 pub mod map;
+pub mod resources;
 pub mod startup;
 
 
@@ -20,6 +21,7 @@ fn main() {
                 .set(ImagePlugin::default_nearest()),
         )
         .add_plugins(TilemapPlugin)
+        .add_systems(PreStartup, crate::startup::select_asset_pack)
         .add_systems(Startup, crate::startup::startup)
         .add_systems(Update, bevy::window::close_on_esc)
         .run();
