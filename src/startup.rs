@@ -1,52 +1,24 @@
 use bevy::prelude::*;
 use bevy_ecs_tilemap::prelude::*;
+use crate::components::{Player, Health};
 use crate::map::random_ground;
-use crate::resources::AssetPack;
 
-pub fn select_asset_pack(
-    mut commands: Commands,
-    asset_server: Res<AssetServer>,
-) {
-    use bevy::asset::LoadState;
 
-    let canari_folder: &'static str = "OneBitCanariPack";
-    let canari_path: &'static str = "tileset/PixelPackTopDown1Bit.png";
-    let canari_pack = AssetPack {
-        folder_name: canari_folder,
-        tileset_path: canari_path,
-        tileset_tile_size: (16.0, 16.0),
-        tileset_handle: asset_server.load(format!("{canari_folder}/{canari_path}")),
-    };
-
-    match asset_server.get_load_state(canari_pack.tileset_handle.clone()) {
-        LoadState::Failed => {
-            // CanariPack is not installed, go on with the free Dinotype pack
-            let dinotype_folder: &'static str = "Dinotype";
-            let dinotype_path: &'static str = "dinotype_x2.png";
-            let dinotype_pack = AssetPack {
-                folder_name: dinotype_folder,
-                tileset_path: dinotype_path,
-                tileset_tile_size: (12.0, 16.0),
-                tileset_handle: asset_server.load(format!("{dinotype_folder}/{dinotype_path}")),
-            };
-            commands.insert_resource(dinotype_pack);
-        }
-        _ => { commands.insert_resource(canari_pack) } // Go on with CanariPack
-    }
-}
 
 pub fn startup(
     mut commands: Commands, 
-    asset_pack:   Res<AssetPack>,
+    asset_server: Res<AssetServer>,
 ) {
-    commands.spawn(Camera2dBundle::default());
-    build_tilemap(commands, asset_pack);
+    
+    build_tilemap(commands, asset_server);
 }
 
-fn build_tilemap(
+// TODO: move to map module
+pub fn build_tilemap(
     mut commands: Commands,
-    asset_pack: Res<AssetPack>,
+    asset_server: Res<AssetServer>,
 ) {
+    let texture_handle: Handle<Image> = asset_server.load("OneBitCanariPack/tileset/PixelPackTopDown1Bit.png");
     let map_size = TilemapSize { x: 32, y: 32 };
     let mut tile_storage = TileStorage::empty(map_size);
     let tilemap_entity = commands.spawn_empty().id();
@@ -59,7 +31,7 @@ fn build_tilemap(
                 .spawn(TileBundle {
                     position: tile_pos,
                     tilemap_id: TilemapId(tilemap_entity),
-                    texture_index: random_ground(&asset_pack),
+                    texture_index: random_ground(),
                     ..Default::default()
                 })
                 .id();
@@ -67,7 +39,15 @@ fn build_tilemap(
         }
     }
 
-    let tile_size = TilemapTileSize { x: asset_pack.tileset_tile_size.0, y: asset_pack.tileset_tile_size.1 };
+    // TODO: move to its own function in the Player module, BUT
+    // experimental function at the end of this file does not work (see comments)
+    let player_start_tile = &tile_storage.get(&TilePos {x: 15, y: 15}).unwrap();
+    commands.entity(*player_start_tile)
+        .insert(Player)
+        .insert(Health(20))
+        .insert(TileTextureIndex(2 + 3 * 16));
+
+    let tile_size = TilemapTileSize { x: 16.0, y: 16.0 };
     let grid_size = tile_size.into();
     let map_type = TilemapType::Square;
     commands
@@ -77,7 +57,7 @@ fn build_tilemap(
             map_type,
             size: map_size,
             storage: tile_storage,
-            texture: TilemapTexture::Single(asset_pack.tileset_handle.clone()),
+            texture: TilemapTexture::Single(texture_handle),
             tile_size,
             spacing: TilemapSpacing { x: 0.0, y: 0.0 },
             transform: get_tilemap_center_transform(&map_size, &grid_size, &map_type, 1.0) *
@@ -94,8 +74,11 @@ fn build_tilemap(
     }
 } */
 
-/* fn player() {
-    // Construct player and amend its tile, TODO: move to player builder
+/* pub fn build_player(
+    mut commands: Commands,
+    tile_query: Query<&TileStorage>, // /!\ does not find TileStorage component even on separate schedules or using after()
+) {
+    let tile_storage = tile_query.get_single().unwrap(); 
     let player_start_tile = tile_storage.get(&TilePos {x: 15, y: 15}).unwrap();
     commands.entity(player_start_tile)
         .insert(Player)
