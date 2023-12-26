@@ -13,7 +13,7 @@ Legend:
 - [✓] Create simple, square tilemaps (with `bevy_ecs_tilemap`)
   - [✓] Basic terrain layer (0) with random ground tiles
   - [✓] Basic characters layer (2) with Player stating at the center
-  - [>] Player 4-direction movement (HJKL)
+  - [✓] Player 4-direction movement (arrows)
 - [+] Asset management, for tilemaps but also characters
   - [+] Access through mapping functions: TileTextureIndex(1D-coordinates) 
     <= Spritesheets with specific coordinates <= abstract Unicode symbols

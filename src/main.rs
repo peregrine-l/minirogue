@@ -25,6 +25,9 @@ fn main() {
         )
         .add_plugins(TilemapPlugin)
         .add_systems(Startup, camera_setup)
+        // PROBLEM: All those initialization systems should be in the same Startup schedule, BUT
+        // the database is not ready by the time the next one runs, and I get NoEntities errors
+        // Proposed fixes .after() and .apply_deferred() does not seem to work (or I don't use them correctly)
         .add_systems(PreStartup, crate::map::setup_tilemap_builders)
         .add_systems(Startup, crate::map::build_tilemaps.after(crate::map::setup_tilemap_builders))
         .add_systems(PostStartup, crate::player::build_player.after(crate::map::build_tilemaps))

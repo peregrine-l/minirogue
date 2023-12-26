@@ -53,9 +53,9 @@ pub fn player_movement(
             }
         }
 
+        // ELEGANCE ALERT: Is there a nicer way to test and use potentially uninitialized
+        // variables in a loop?
         if let Some(map_size) = map_size {
-            // Frankly, insn't there a better way than using Options
-            // (or Results) to handle uninitalized variables after a loop?
             if let Some(tile_storage) = tile_storage {
                 let (player_id, player_pos) = player_q.get_single().unwrap();
 
