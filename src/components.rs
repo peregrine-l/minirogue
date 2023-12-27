@@ -1,7 +1,6 @@
 use bevy::prelude::*;
 use bevy_ecs_tilemap::{prelude::*, tiles::TileTextureIndex};
 
-
 // Map
 
 #[derive(Component, Clone, PartialEq)]
@@ -24,7 +23,6 @@ pub struct TilemapBuilder {
     pub layer_z: f32,
     pub init_tile_fn: fn() -> TileTextureIndex,
 }
-
 
 // Player
 

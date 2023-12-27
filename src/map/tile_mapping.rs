@@ -1,5 +1,14 @@
 use phf::phf_map;
 
+// TODO: general Roguelike symbols map <=> dispatch to other maps according to selected pack
+// TODO: Standard CodePage437 <=> equivalent UTF-8 char <= general map
+// TODO: 1BitTDCanari assets <=> intermediate representation <= general map
+// Canari Tiles: 22x16 SpriteSheet
+// Canari Heroes, Monsters: do I regroup all animations of a character into one spritesheet?
+// test animation first, and see if it's a good idea
+// Canari Items: into one spritesheet?
+
+// TODO: Drop Dinotype as an asset, but save this map for the CP437 map
 pub static DINOTYPE_TILES: phf::Map<char, u32> = phf_map! {
     '\u{000000}' => 0x00, // NULL
     '\u{00263A}' => 0x01, // WHITE SMILING FACE

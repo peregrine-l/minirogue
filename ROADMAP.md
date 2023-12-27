@@ -47,4 +47,3 @@ Legend:
         for examining, picking, dropping, using it
 - Animation: 
   - [ ] Animate Player and Monster (still 4-directions only)
-
