@@ -1,4 +1,4 @@
-use crate::components::{Player, PlayerBundle, TileMarker, TilemapMarker};
+use crate::components::{Player, PlayerBundle, TilemapMarker};
 use bevy::prelude::*;
 use bevy_ecs_tilemap::{
     helpers::square_grid::neighbors::{Neighbors, SquareDirection},
@@ -6,7 +6,6 @@ use bevy_ecs_tilemap::{
 };
 
 pub fn build_player(mut commands: Commands, query: Query<(&TileStorage, &TilemapMarker)>) {
-
     commands.spawn(PlayerBundle::default()); // player entity
 
     for (tile_storage, tilemap_marker) in query.iter() {
@@ -15,8 +14,8 @@ pub fn build_player(mut commands: Commands, query: Query<(&TileStorage, &Tilemap
                 let player_start_tile = tile_storage.get(&TilePos { x: 0, y: 0 }).unwrap();
                 commands
                     .entity(player_start_tile)
-                        .insert(TileTextureIndex(0)); // character sprite
-            },
+                    .insert(TileTextureIndex(0)); // character sprite
+            }
             TilemapMarker::TerrainTilemap => {}
         }
     }
@@ -25,8 +24,8 @@ pub fn build_player(mut commands: Commands, query: Query<(&TileStorage, &Tilemap
 pub fn player_movement(
     keyboard_input: Res<Input<KeyCode>>,
     mut player_q: Query<&mut TilePos, With<Player>>,
-    mut tiles_q: Query<(&TilePos, &mut TileTextureIndex, &TileMarker), Without<Player>>,
-    tilemap_q: Query<(&TilemapSize, &TilemapMarker)>,
+    mut tiles_q: Query<&mut TileTextureIndex>,
+    tilemap_q: Query<(&TilemapSize, &TileStorage, &TilemapMarker)>,
 ) {
     let input_direction = if !keyboard_input.any_pressed([KeyCode::ShiftLeft, KeyCode::ShiftRight])
     {
@@ -48,7 +47,7 @@ pub fn player_movement(
     if let Some(movement_direction) = input_direction {
         let mut player_pos = player_q.get_single_mut().unwrap();
 
-        for (tilemap_size, tilemap_marker) in tilemap_q.iter() {
+        for (tilemap_size, tile_storage, tilemap_marker) in tilemap_q.iter() {
             match tilemap_marker {
                 TilemapMarker::CharactersTilemap => {
                     let neighboring_tiles = Neighbors::get_square_neighboring_positions(
@@ -58,29 +57,24 @@ pub fn player_movement(
                     );
 
                     if let Some(target_pos) = neighboring_tiles.get(movement_direction) {
-                        // OPTIMIZATION: Isn't getting all Tiles too costly?
-                        let mut tiles_found = 0;
-                        for (tile_pos, mut tile_texture_index, tile_marker) in tiles_q.iter_mut() {
-                            match tile_marker {
-                                TileMarker::CharactersTile => {
-                                    // Set TileTextureIndex of target tile to 1, currently the index of the transparent sprite
-                                    if *tile_pos == *player_pos {
-                                        tile_texture_index.0 = 1;
-                                        tiles_found += 1;
-                                    }
-                                    // Set TileTextureIndex of target tile to 0, currently the index of the character sprite
-                                    if *tile_pos == *target_pos { 
-                                        tile_texture_index.0 = 0;
-                                        tiles_found += 1;
-                                    }
-                                }
-                                TileMarker::TerrainTile => {} // for later interactions with the terrain
-                            }
-                            if tiles_found == 2 { break; }
+                        {
+                            let source_tile_id = tile_storage.get(&player_pos).unwrap();
+                            let mut source_tile_texture_index =
+                                tiles_q.get_mut(source_tile_id).unwrap();
+                            source_tile_texture_index.0 = 1; // set to transparent sprite
                         }
-                        (player_pos.x, player_pos.y) = (target_pos.x, target_pos.y);
+
+                        {
+                            let target_tile_id = tile_storage.get(target_pos).unwrap();
+                            let mut target_tile_texture_index =
+                                tiles_q.get_mut(target_tile_id).unwrap();
+                            target_tile_texture_index.0 = 0; // set to character sprite
+                        }
+
+                        (player_pos.x, player_pos.y) = (target_pos.x, target_pos.y); // set player position
                     }
                 }
+
                 TilemapMarker::TerrainTilemap => {} // for later interactions with the terrain
             }
         }
