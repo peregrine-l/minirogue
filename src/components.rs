@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use bevy_ecs_tilemap::{prelude::*, tiles::TileTextureIndex};
+use bevy_ecs_tilemap::prelude::*;
 
 // Map
 
@@ -15,15 +15,6 @@ pub enum TilemapMarker {
     CharactersTilemap,
 }
 
-#[derive(Component)]
-pub struct TilemapBuilder {
-    pub asset_path: String,
-    pub tilemap_marker: TilemapMarker,
-    pub tile_marker: TileMarker,
-    pub layer_z: f32,
-    pub init_tile_fn: fn() -> TileTextureIndex,
-}
-
 // Player
 
 #[derive(Component)]
@@ -34,17 +25,7 @@ pub struct Health(pub u32);
 
 #[derive(Bundle)]
 pub struct PlayerBundle {
-    marker: Player,
-    health: Health,
-    position: TilePos,
-}
-
-impl Default for PlayerBundle {
-    fn default() -> Self {
-        Self {
-            marker: Player,
-            health: Health(1),
-            position: TilePos { x: 0, y: 0 },
-        }
-    }
+    pub marker: Player,
+    pub health: Health,
+    pub position: TilePos,
 }

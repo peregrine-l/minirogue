@@ -5,8 +5,18 @@ pub mod components;
 pub mod map;
 pub mod player;
 
-fn camera_setup(mut commands: Commands) {
+use crate::components::TilemapMarker;
+
+fn game_setup(
+    mut commands: Commands,
+    query: Query<(&TileStorage, &TilemapMarker)>,
+    asset_server: Res<AssetServer>,
+) {
     commands.spawn(Camera2dBundle::default());
+    for tilemap_metadata in crate::map::setup_tilemap_metadata().iter() {
+        crate::map::build_tilemaps(&mut commands, &asset_server, tilemap_metadata);
+    }
+    crate::player::build_player(&mut commands, query);
 }
 
 fn main() {
@@ -24,19 +34,7 @@ fn main() {
                 .set(LogPlugin::default()),
         )
         .add_plugins(TilemapPlugin)
-        .add_systems(Startup, camera_setup)
-        // PROBLEM: All those initialization systems should be in the same Startup schedule, BUT
-        // the database is not ready by the time the next one runs, and I get NoEntities errors
-        // Proposed fixes .after() and .apply_deferred() does not seem to work (or I don't use them correctly)
-        .add_systems(PreStartup, crate::map::setup_tilemap_builders)
-        .add_systems(
-            Startup,
-            crate::map::build_tilemaps.after(crate::map::setup_tilemap_builders),
-        )
-        .add_systems(
-            PostStartup,
-            crate::player::build_player.after(crate::map::build_tilemaps),
-        )
+        .add_systems(Startup, game_setup)
         .add_systems(Update, crate::player::player_movement)
         .add_systems(Update, bevy::window::close_on_esc)
         .run();

@@ -1,12 +1,16 @@
-use crate::components::{Player, PlayerBundle, TilemapMarker};
+use crate::components::{Health, Player, PlayerBundle, TilemapMarker};
 use bevy::prelude::*;
 use bevy_ecs_tilemap::{
     helpers::square_grid::neighbors::{Neighbors, SquareDirection},
     prelude::*,
 };
 
-pub fn build_player(mut commands: Commands, query: Query<(&TileStorage, &TilemapMarker)>) {
-    commands.spawn(PlayerBundle::default()); // player entity
+pub fn build_player(commands: &mut Commands, query: Query<(&TileStorage, &TilemapMarker)>) {
+    commands.spawn(PlayerBundle {
+        marker: Player,
+        health: Health(1),
+        position: TilePos { x: 0, y: 0 },
+    }); // player entity
 
     for (tile_storage, tilemap_marker) in query.iter() {
         match tilemap_marker {
@@ -71,7 +75,8 @@ pub fn player_movement(
                             target_tile_texture_index.0 = 0; // set to character sprite
                         }
 
-                        (player_pos.x, player_pos.y) = (target_pos.x, target_pos.y); // set player position
+                        (player_pos.x, player_pos.y) = (target_pos.x, target_pos.y);
+                        // set player position
                     }
                 }
 
