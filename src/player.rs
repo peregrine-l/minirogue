@@ -1,4 +1,5 @@
 use crate::components::{Health, Player, PlayerBundle, TilemapMarker};
+use crate::mappings::cp437_tile;
 use bevy::prelude::*;
 use bevy_ecs_tilemap::{
     helpers::square_grid::neighbors::{Neighbors, SquareDirection},
@@ -12,13 +13,13 @@ pub fn build_player(commands: &mut Commands, query: Query<(&TileStorage, &Tilema
         position: TilePos { x: 0, y: 0 },
     }); // player entity
 
+    if query.is_empty() { info!("empty q"); }
     for (tile_storage, tilemap_marker) in query.iter() {
         match tilemap_marker {
             TilemapMarker::CharactersTilemap => {
                 let player_start_tile = tile_storage.get(&TilePos { x: 0, y: 0 }).unwrap();
-                commands
-                    .entity(player_start_tile)
-                    .insert(TileTextureIndex(0)); // character sprite
+                commands.entity(player_start_tile).insert(cp437_tile(&'☺')); // character sprite
+                info!("init player tile");
             }
             TilemapMarker::TerrainTilemap => {}
         }
@@ -65,18 +66,18 @@ pub fn player_movement(
                             let source_tile_id = tile_storage.get(&player_pos).unwrap();
                             let mut source_tile_texture_index =
                                 tiles_q.get_mut(source_tile_id).unwrap();
-                            source_tile_texture_index.0 = 1; // set to transparent sprite
+                            source_tile_texture_index.0 = cp437_tile(&'\u{0000}').0;
+                            // set to transparent sprite
                         }
 
                         {
                             let target_tile_id = tile_storage.get(target_pos).unwrap();
                             let mut target_tile_texture_index =
                                 tiles_q.get_mut(target_tile_id).unwrap();
-                            target_tile_texture_index.0 = 0; // set to character sprite
+                            target_tile_texture_index.0 = cp437_tile(&'☺').0; // set to character sprite
                         }
 
                         (player_pos.x, player_pos.y) = (target_pos.x, target_pos.y);
-                        // set player position
                     }
                 }
 

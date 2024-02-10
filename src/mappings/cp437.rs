@@ -1,17 +1,8 @@
 use phf::phf_map;
 
-// TODO: general Roguelike symbols map <=> dispatch to other maps according to selected pack
-// TODO: Standard CodePage437 <=> equivalent UTF-8 char <= general map
-// TODO: 1BitTDCanari assets <=> intermediate representation <= general map
-// Canari Tiles: 22x16 SpriteSheet
-// Canari Heroes, Monsters: do I regroup all animations of a character into one spritesheet?
-// test animation first, and see if it's a good idea
-// Canari Items: into one spritesheet?
-
-// TODO: Drop Dinotype as an asset, but save this map for the CP437 map
-pub static DINOTYPE_TILES: phf::Map<char, u32> = phf_map! {
+pub static CP437: phf::Map<char, u32> = phf_map! {
     '\u{000000}' => 0x00, // NULL
-    '\u{00263A}' => 0x01, // WHITE SMILING FACE
+    '☺' => 0x01, // WHITE SMILING FACE
     '\u{00263B}' => 0x02, // BLACK SMILING FACE
     '\u{002665}' => 0x03, // BLACK HEART SUIT
     '\u{002666}' => 0x04, // BLACK DIAMOND SUIT
@@ -268,81 +259,4 @@ pub static DINOTYPE_TILES: phf::Map<char, u32> = phf_map! {
     '\u{0000B2}' => 0xFD, // SUPERSCRIPT TWO
     '\u{0025A0}' => 0xFE, // BLACK SQUARE
     '\u{0000A0}' => 0xFF, // NO-BREAK SPACE
-};
-
-pub static CANARI_TILES: phf::Map<&'static str, (u8, u8)> = phf_map! {
-    "black"                   => ( 1,  0),
-    "boulder"                 => ( 6, 15),
-    "brick wall: e"           => ( 9, 12),
-    "brick wall: n"           => ( 8, 11),
-    "brick wall: ne"          => ( 8, 12),
-    "brick wall: nw"          => ( 8, 10),
-    "brick wall: s"           => (10, 11),
-    "brick wall: se"          => (10, 12),
-    "brick wall: sw"          => (10, 10),
-    "brick wall: w"           => ( 9, 10),
-    "column"                  => ( 6, 16),
-    "crystal"                 => ( 5, 16),
-    "door stairs: down"       => (14, 10),
-    "door stairs: up"         => (15, 10),
-    "door: e: left"           => ( 7,  8),
-    "door: e: right"          => ( 7,  9),
-    "door: n: left"           => ( 5,  8),
-    "door: n: right"          => ( 6,  8),
-    "door: s: left"           => ( 5,  9),
-    "door: s: right"          => ( 6,  9),
-    "door: w: left"           => ( 8,  8),
-    "door: w: right"          => ( 8,  9),
-    "ground: 1 dot a"         => ( 1,  2),
-    "ground: 1 dot b"         => ( 2,  2),
-    "ground: 2 dots"          => ( 3,  2),
-    "ground: 3 dots a"        => ( 4,  2),
-    "ground: 3 dots b"        => ( 5,  2),
-    "passage: e: left"        => ( 6,  6),
-    "passage: e: right"       => ( 6,  7),
-    "passage: n: left"        => ( 4,  6),
-    "passage: n: right"       => ( 5,  6),
-    "passage: s: left"        => ( 4,  7),
-    "passage: s: right"       => ( 5,  7),
-    "passage: w: left"        => ( 7,  6),
-    "passage: w: right"       => ( 7,  7),
-    "plate trap: off"         => ( 0, 18),
-    "plate trap: on"          => ( 1, 18),
-    "quad wall: down: ne"     => ( 9,  8),
-    "quad wall: down: nw"     => ( 8,  8),
-    "quad wall: down: se"     => ( 9,  9),
-    "quad wall: down: sw"     => ( 8,  9),
-    "quad wall: up: ne"       => ( 9, 15),
-    "quad wall: up: nw"       => ( 8, 15),
-    "quad wall: up: se"       => ( 9, 16),
-    "quad wall: up: sw"       => ( 8, 16),
-    "spike trap: off"         => ( 0, 17),
-    "spike trap: on"          => ( 1, 17),
-    "stairs: down"            => ( 9, 11),
-    "stairs: up"              => ( 9,  5),
-    "torch: brick wall: e #1" => ( 0, 14),
-    "torch: brick wall: e #2" => ( 1, 14),
-    "torch: brick wall: e #3" => ( 2, 14),
-    "torch: brick wall: e #4" => ( 3, 14),
-    "torch: brick wall: n #1" => ( 0, 13),
-    "torch: brick wall: n #2" => ( 1, 13),
-    "torch: brick wall: n #3" => ( 2, 13),
-    "torch: brick wall: n #4" => ( 3, 13),
-    "torch: brick wall: s #1" => ( 0, 15),
-    "torch: brick wall: s #2" => ( 1, 15),
-    "torch: brick wall: s #3" => ( 2, 15),
-    "torch: brick wall: s #4" => ( 3, 15),
-    "torch: brick wall: w #1" => ( 0, 16),
-    "torch: brick wall: w #2" => ( 1, 16),
-    "torch: brick wall: w #3" => ( 2, 16),
-    "torch: brick wall: w #4" => ( 3, 16),
-    "transparent"             => ( 0,  0),
-    "water #1"                => ( 0,  5),
-    "water #2"                => ( 1,  5),
-    "water #3"                => ( 2,  5),
-    "water #4"                => ( 3,  5),
-    "wide hole: e"            => (11, 11),
-    "wide hole: n"            => (12, 11),
-    "wide hole: s"            => (12, 12),
-    "wide hole: w"            => (11, 12),
 };

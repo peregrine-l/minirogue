@@ -1,45 +1,39 @@
 use bevy::prelude::*;
 use bevy_ecs_tilemap::{prelude::*, tiles::TileTextureIndex};
-use rand::prelude::*;
-
-pub mod tile_mapping;
 
 use crate::components::{TileMarker, TilemapMarker};
-use crate::map::tile_mapping::CANARI_TILES;
-
-const ASSET_PACK: &'static str = "OneBitCanariPack";
-const TERRAIN: &'static str = "tileset/PixelPackTopDown1Bit.png";
-const CHARACTERS: &'static str = "sprites/heroes/spritesheets/adventurer_idle_d.png";
+use crate::mappings::cp437_tile;
+use crate::resources::AssetPack;
 
 pub struct TilemapMetadata {
     pub asset_path: String,
     pub tilemap_marker: TilemapMarker,
     pub tile_marker: TileMarker,
     pub layer_z: f32,
-    pub init_tile_fn: fn() -> TileTextureIndex,
+    pub init_tile: TileTextureIndex,
 }
 
-pub fn setup_tilemap_metadata() -> [TilemapMetadata; 2] {
+pub fn setup_tilemap_metadata(asset_pack: Res<AssetPack>) -> [TilemapMetadata; 2] {
     let terrain_tilemap = TilemapMetadata {
-        asset_path: format!("{ASSET_PACK}/{TERRAIN}"),
+        asset_path: asset_pack.tileset.to_string(),
         tilemap_marker: TilemapMarker::TerrainTilemap,
         tile_marker: TileMarker::TerrainTile,
         layer_z: 0.0,
-        init_tile_fn: random_ground,
+        init_tile: cp437_tile(&'\u{0000}'),
     };
 
     let characters_tilemap = TilemapMetadata {
-        asset_path: format!("{ASSET_PACK}/{CHARACTERS}"),
+        asset_path: asset_pack.sprites.to_string(),
         tilemap_marker: TilemapMarker::CharactersTilemap,
         tile_marker: TileMarker::CharactersTile,
         layer_z: 2.0,
-        init_tile_fn: || TileTextureIndex(1),
+        init_tile: cp437_tile(&'\u{0000}'),
     };
 
     return [terrain_tilemap, characters_tilemap];
 }
 
-pub fn build_tilemaps(
+pub fn build_tilemap(
     commands: &mut Commands,
     asset_server: &Res<AssetServer>,
     tilemap_metadata: &TilemapMetadata,
@@ -62,7 +56,7 @@ pub fn build_tilemaps(
                     TileBundle {
                         position: tile_pos,
                         tilemap_id: TilemapId(tilemap_entity),
-                        texture_index: (tilemap_metadata.init_tile_fn)(),
+                        texture_index: tilemap_metadata.init_tile,
                         ..Default::default()
                     },
                     tilemap_metadata.tile_marker.clone(),
@@ -92,23 +86,4 @@ pub fn build_tilemaps(
         },
         tilemap_metadata.tilemap_marker.clone(),
     ));
-}
-
-fn random_ground() -> TileTextureIndex {
-    let mut rng = rand::thread_rng();
-
-    let ground_tiles = [
-        (CANARI_TILES.get("black"), 20),
-        (CANARI_TILES.get("ground: 1 dot a"), 3),
-        (CANARI_TILES.get("ground: 1 dot b"), 3),
-        (CANARI_TILES.get("ground: 2 dots"), 2),
-        (CANARI_TILES.get("ground: 3 dots a"), 1),
-        (CANARI_TILES.get("ground: 3 dots b"), 1),
-    ];
-    let coordinates = *ground_tiles
-        .choose_weighted(&mut rng, |item| item.1)
-        .unwrap()
-        .0
-        .unwrap();
-    TileTextureIndex((coordinates.0 as u32) + 16 * (coordinates.1 as u32))
 }
