@@ -1,7 +1,9 @@
 [package]
 name = "minirogue"
 version = "0.1.0"
+authors = [ "Peregrine <peregrine@reki.org>" ]
 edition = "2021"
+license = "MIT"
 
 [features]
 default = ["render"]
@@ -9,7 +11,7 @@ atlas = []
 render = []
 
 [dependencies]
-bevy = { version = "0.11", default-features = false, features = [
+bevy = { version = "0.12.0", default-features = false, features = [
     "bevy_asset",
     "bevy_core_pipeline",
     "bevy_render",
@@ -21,8 +23,8 @@ bevy = { version = "0.11", default-features = false, features = [
     "x11",
 ] }
 anyhow = { version = "1.0" }
-bevy_ecs_tilemap = "0.11.1"
-env_logger = "0.10"
+bevy_ecs_tilemap = { git = "https://github.com/StarArawn/bevy_ecs_tilemap.git" }
+env_logger = "0.11"
 ldtk_rust = { version = "0.6" }
 log = "0.4"
 phf = { version = "0.11.2", features = [ "macros" ] }
@@ -33,7 +35,7 @@ rand = {version = "0.8.5", features = [ "alloc" ]}
 fmt = "0.1.0"
 
 [dev-dependencies.bevy]
-version = "0.11"
+version = "0.12.0"
 default-features = false
 features = [
     "bevy_asset",
@@ -42,14 +44,14 @@ features = [
     "bevy_sprite",
     "bevy_text",
     "bevy_winit",
-    "filesystem_watcher",
+   #"filesystem_watcher",
     "png",
     "ktx2",
     "webgl2"
 ]
 
 [target.'cfg(unix)'.dev-dependencies.bevy]
-version = "0.11"
+version = "0.12.0"
 default-features = false
 features = [
     "bevy_asset",
