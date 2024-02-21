@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use bevy_ecs_tilemap::prelude::*;
 
 // Map
 
@@ -15,17 +14,33 @@ pub enum TilemapMarker {
     CharactersTilemap,
 }
 
-// Player
+#[derive(Component)]
+pub struct Impassable;
+
+pub enum WallOrientation {
+    NorthwestCorner,
+    Horizontal,
+    NortheastCorner,
+    Vertical,
+    SoutheastCorner,
+    SouthwestCorner,
+    Pillar,
+    Undefined,
+}
 
 #[derive(Component)]
+pub struct Wall(pub WallOrientation);
+
+#[derive(Bundle)]
+pub struct WallBundle {
+    pub wall: Wall,
+    pub pass: Impassable,    
+}
+
+// Player
+
+#[derive(Component, PartialEq)]
 pub struct Player;
 
 #[derive(Component)]
 pub struct Health(pub u32);
-
-#[derive(Bundle)]
-pub struct PlayerBundle {
-    pub marker: Player,
-    pub health: Health,
-    pub position: TilePos,
-}

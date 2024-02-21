@@ -1,4 +1,4 @@
-use bevy::{log::LogPlugin, prelude::*};
+use bevy::prelude::*;
 use bevy_ecs_tilemap::prelude::*;
 
 pub mod components;
@@ -6,37 +6,12 @@ pub mod map;
 pub mod mappings;
 pub mod player;
 pub mod resources;
+pub mod setup;
 
-use crate::components::TilemapMarker;
-use crate::resources::AssetPack;
+use bevy::log::LogPlugin;
+use crate::setup::select_asset_pack;
+use crate::setup::game_setup;
 
-fn select_asset_pack() -> AssetPack {
-    // TODO: here test for the presence of the OneBitCanari asset pack
-    // if absent, use the Free asset pack
-    let free_asset_pack = AssetPack {
-        name: "Free asset pack",
-        tileset: "FreeAssetPack/RogueYun_SomethingBoxy.png",
-        sprites: "FreeAssetPack/RogueYun_SomethingBoxy.png",
-    };
-
-    return free_asset_pack;
-}
-
-fn game_setup(
-    mut commands: Commands,
-    asset_pack: Res<AssetPack>,
-    query: Query<(&TileStorage, &TilemapMarker)>,
-    asset_server: Res<AssetServer>,
-) {
-    commands.spawn(Camera2dBundle::default());
-
-    for tilemap_metadata in crate::map::setup_tilemap_metadata(asset_pack).iter() {
-        crate::map::build_tilemap(&mut commands, &asset_server, tilemap_metadata);
-    }
-
-    
-    crate::player::build_player(&mut commands, query);
-}
 
 fn main() {
     App::new()

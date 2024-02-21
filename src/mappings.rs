@@ -5,6 +5,10 @@ use self::cp437::CP437;
 pub mod canaripack;
 pub mod cp437;
 
+pub fn cp437_pos(c: &char) -> u32 {
+    return *CP437.get(&c).unwrap();
+}
+
 pub fn cp437_tile(c: &char) -> TileTextureIndex {
     return TileTextureIndex(*CP437.get(&c).unwrap());
 }

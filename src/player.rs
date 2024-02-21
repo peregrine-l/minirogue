@@ -1,36 +1,33 @@
-use crate::components::{Health, Player, PlayerBundle, TilemapMarker};
-use crate::mappings::cp437_tile;
 use bevy::prelude::*;
 use bevy_ecs_tilemap::{
     helpers::square_grid::neighbors::{Neighbors, SquareDirection},
     prelude::*,
 };
 
-pub fn build_player(commands: &mut Commands, query: Query<(&TileStorage, &TilemapMarker)>) {
-    commands.spawn(PlayerBundle {
-        marker: Player,
-        health: Health(1),
-        position: TilePos { x: 0, y: 0 },
-    }); // player entity
+use crate::components::{Health, Impassable, Player, TilemapMarker};
+use crate::mappings::{cp437_pos, cp437_tile};
 
-    if query.is_empty() { info!("empty q"); }
-    for (tile_storage, tilemap_marker) in query.iter() {
-        match tilemap_marker {
-            TilemapMarker::CharactersTilemap => {
-                let player_start_tile = tile_storage.get(&TilePos { x: 0, y: 0 }).unwrap();
-                commands.entity(player_start_tile).insert(cp437_tile(&'☺')); // character sprite
-                info!("init player tile");
-            }
-            TilemapMarker::TerrainTilemap => {}
-        }
-    }
+pub fn build_player(
+    commands: &mut Commands,
+    player_start_tile: Entity,
+    player_start_pos: (u32, u32),
+) {
+    commands.spawn((
+        Player, 
+        Health(1), 
+        TilePos { x: player_start_pos.0, y: player_start_pos.1 },
+        Impassable
+    )); // player entity
+
+    commands.entity(player_start_tile).insert(cp437_tile(&'☺'));
 }
 
 pub fn player_movement(
     keyboard_input: Res<Input<KeyCode>>,
-    mut player_q: Query<&mut TilePos, With<Player>>,
+    tilemap_q: Query<(&TilemapMarker, &TilemapSize, &TileStorage)>,
     mut tiles_q: Query<&mut TileTextureIndex>,
-    tilemap_q: Query<(&TilemapSize, &TileStorage, &TilemapMarker)>,
+    mut player_q: Query<&mut TilePos, With<Player>>,
+    impassables_q: Query<&TilePos, With<Impassable>>,
 ) {
     let input_direction = if !keyboard_input.any_pressed([KeyCode::ShiftLeft, KeyCode::ShiftRight])
     {
@@ -50,39 +47,43 @@ pub fn player_movement(
     };
 
     if let Some(movement_direction) = input_direction {
-        let mut player_pos = player_q.get_single_mut().unwrap();
+        let mut tilemap_size: Option<&TilemapSize> = None;
+        let mut chars_tile_storage: Option<&TileStorage> = None;
 
-        for (tilemap_size, tile_storage, tilemap_marker) in tilemap_q.iter() {
-            match tilemap_marker {
+        for (q_tilemap_marker, q_tilemap_size, q_chars_tile_storage) in tilemap_q.iter() {
+            match q_tilemap_marker {
                 TilemapMarker::CharactersTilemap => {
-                    let neighboring_tiles = Neighbors::get_square_neighboring_positions(
-                        &player_pos,
-                        tilemap_size,
-                        false,
-                    );
-
-                    if let Some(target_pos) = neighboring_tiles.get(movement_direction) {
-                        {
-                            let source_tile_id = tile_storage.get(&player_pos).unwrap();
-                            let mut source_tile_texture_index =
-                                tiles_q.get_mut(source_tile_id).unwrap();
-                            source_tile_texture_index.0 = cp437_tile(&'\u{0000}').0;
-                            // set to transparent sprite
-                        }
-
-                        {
-                            let target_tile_id = tile_storage.get(target_pos).unwrap();
-                            let mut target_tile_texture_index =
-                                tiles_q.get_mut(target_tile_id).unwrap();
-                            target_tile_texture_index.0 = cp437_tile(&'☺').0; // set to character sprite
-                        }
-
-                        (player_pos.x, player_pos.y) = (target_pos.x, target_pos.y);
-                    }
+                    tilemap_size = Some(q_tilemap_size);
+                    chars_tile_storage = Some(q_chars_tile_storage);
                 }
-
                 TilemapMarker::TerrainTilemap => {} // for later interactions with the terrain
             }
+        }
+
+        let mut player_pos = player_q.get_single_mut().unwrap();
+
+        let neighboring_tiles = Neighbors::get_square_neighboring_positions(
+            &player_pos,
+            tilemap_size.unwrap(),
+            false,
+        );
+
+        if let Some(target_pos) = neighboring_tiles.get(movement_direction) {
+            {
+                let source_tile_id = chars_tile_storage.unwrap().get(&player_pos).unwrap();
+                let mut source_tile_texture_index =
+                    tiles_q.get_mut(source_tile_id).unwrap();
+                source_tile_texture_index.0 = cp437_pos(&'\u{0000}'); // set to transparent sprite
+            }
+
+            {
+                let target_tile_id = chars_tile_storage.unwrap().get(&target_pos).unwrap();
+                let mut target_tile_texture_index =
+                    tiles_q.get_mut(target_tile_id).unwrap();
+                target_tile_texture_index.0 = cp437_pos(&'☺'); // set to character sprite
+            }
+
+            (player_pos.x, player_pos.y) = (target_pos.x, target_pos.y);
         }
     }
 }

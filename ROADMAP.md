@@ -14,10 +14,10 @@ Legend:
   - [✓] Basic terrain layer (0) with random ground tiles
   - [✓] Basic characters layer (2) with Player stating at the center
   - [✓] Player 4-direction movement (arrows)
-- [+] Asset management, for tilemaps but also characters
-  - [+] Access through mapping functions: TileTextureIndex(1D-coordinates) 
+- [✓] Asset management, for tilemaps but also characters
+  - [✓] Access through mapping functions: TileTextureIndex(1D-coordinates) 
     <= Spritesheets with specific coordinates <= abstract Unicode symbols
-      - [+] Dungeon floors, Dungeon wall (no direction),
+      - [✓] Dungeon floors, Dungeon wall (no direction),
         Adventurer Player (no animation), Monster (no animation)
 - [ ] Wall component, that blocks movement
   - [ ] Set up simple map with walls for testing
