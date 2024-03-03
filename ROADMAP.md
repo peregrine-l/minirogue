@@ -19,8 +19,8 @@ Legend:
     <= Spritesheets with specific coordinates <= abstract Unicode symbols
       - [✓] Dungeon floors, Dungeon wall (no direction),
         Adventurer Player (no animation), Monster (no animation)
-- [ ] Wall component, that blocks movement
-  - [ ] Set up simple map with walls for testing
+- [✓] Wall component, that blocks movement
+  - [✓] Set up simple map with walls for testing
 - [ ] Roguelike-like persistence: (S)ave command, Load if save exists, 
   (N)ew game destroys save
 - [ ] Monster component, brownian motion AI, no attack

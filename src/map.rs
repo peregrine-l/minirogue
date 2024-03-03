@@ -1,5 +1,6 @@
 use bevy::prelude::*;
 use bevy_ecs_tilemap::prelude::*;
+use rand::distributions::{Bernoulli, Distribution};
 
 use crate::components::{TileMarker, TilemapMarker, Impassable, Wall, WallOrientation};
 use crate::mappings::cp437_tile;
@@ -130,6 +131,8 @@ fn build_walls(
         tile_storage.set(&tile_pos, tile_entity);
     }
 
+    let d = Bernoulli::new(0.05).unwrap();
+
     for i in 0..map_size.x {
         for j in 0..map_size.y {
             if j == 0 || j == map_size.y - 1 {
@@ -137,7 +140,10 @@ fn build_walls(
             } else if !(j == 0 || j == map_size.y - 1) 
                       && (i == 0 || i == map_size.x - 1) {
                 build_single_wall(commands, tilemap_entity, tile_storage, i, j);
+            } else if d.sample(&mut rand::thread_rng()) {
+                build_single_wall(commands, tilemap_entity, tile_storage, i, j);
             }
+
         }
     }
 }
